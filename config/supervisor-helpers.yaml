@@ -1,0 +1,24 @@
+# HA helpers used by the supervisory layer (design stage).
+input_boolean:
+  sup_enabled:
+    name: "Supervisor - plant writes enabled"
+input_datetime:
+  sup_heartbeat:
+    name: "Supervisor - heartbeat"
+    has_date: true
+    has_time: true
+automation:
+  - id: sup_heartbeat_missed
+    alias: Supervisor - heartbeat missed
+    triggers:
+      - trigger: time_pattern
+        minutes: "/5"
+    conditions:
+      - condition: template
+        value_template: >
+          {{ (now() - states('input_datetime.sup_heartbeat') | as_datetime | as_local).total_seconds() > 300 }}
+    actions:
+      - action: notify.send_message
+        target: {entity_id: notify.your_phone}
+        data:
+          message: "Node-RED supervisor heartbeat missed: field controllers on local control."
