@@ -55,7 +55,8 @@ flowchart TB
 | [04 First flows and the functions it hosts](docs/04-flows-and-functions.md) | Round-trip proof flow; the roadmap of functions |
 
 ## Roadmap
-- [ ] Node-RED add-on on the live HA, with the HA websocket nodes and a dedicated, least-privilege access token
+- [x] Node-RED add-on installed on the live HA (also listed in the [integration schedule](https://github.com/the-control-cabinet/home-assistant-integration-schedule))
+- [ ] HA websocket nodes connected with a dedicated, least-privilege access token
 - [ ] Conventions: flow naming, a shared "supervisor" helper group, flows exported to this repo
 - [ ] Patterns: heartbeat entity, stale-data guard, command log
 - [ ] Proof flow: read a zone temperature → send a **temporary** setpoint over RAMSES-II → confirm read-back → confirm reversion at expiry
